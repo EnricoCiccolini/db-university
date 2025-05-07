@@ -60,15 +60,20 @@ FROM
 
 # 6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
 ```
-SELECT 
-    *
+SELECT DISTINCT
+    (teachers.id), teachers.*, departments.*
 FROM
     db_university.teachers
-    INNER JOIN course_teacher on teachers.id = course_teacher.teacher_id
-    INNER JOIN courses on course_teacher.course_id = courses.id
-	INNER JOIN degrees ON degrees.id = courses.degree_id
-    INNER JOIN departments on departments.id = degrees.department_id
-    WHERE departments.name = 'dipartimento di matematica'
+        INNER JOIN
+    course_teacher ON teachers.id = course_teacher.teacher_id
+        INNER JOIN
+    courses ON course_teacher.course_id = courses.id
+        INNER JOIN
+    degrees ON degrees.id = courses.degree_id
+        INNER JOIN
+    departments ON departments.id = degrees.department_id
+WHERE
+    departments.name = 'dipartimento di matematica'
 
 ```
 
