@@ -78,7 +78,7 @@ WHERE
 ```
 
 # 7. BONUS: Selezionare per ogni studente il numero di tentativi sostenuti per ogni esame, stampando anche il voto massimo. Successivamente, filtrare i tentativi con voto minimo 18.
-```
+<!-- ```
 SELECT 
     COUNT(students.registration_number) AS tentativi_per_esame,
     MAX(exam_student.vote) AS max_vote,
@@ -94,4 +94,24 @@ FROM
         INNER JOIN
     courses ON exams.course_id = courses.id
 GROUP BY students.id , courses.name
+``` -->
 ```
+
+  SELECT 
+    COUNT(students.registration_number) AS tentativi_per_esame,
+    MAX(exam_student.vote) AS max_vote,
+    SUM(exam_student.vote >= 18) AS tentativi_min_18,
+    students.*,
+    courses.name
+FROM
+    db_university.students
+        INNER JOIN
+    exam_student ON students.id = exam_student.student_id
+        INNER JOIN
+    exams ON exam_student.exam_id = exams.id
+        INNER JOIN
+    courses ON exams.course_id = courses.id
+GROUP BY students.id , courses.name
+HAVING
+    MAX(exam_student.vote) >= 18
+    ```
