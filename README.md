@@ -42,7 +42,7 @@ SELECT
 FROM
     db_university.exams
 WHERE
-    hour > '16:00:00'
+    hour > '14:00:00'
         AND date = "2020-06-20";
 # 6. Selezionare tutti i corsi di laurea magistrale (38)
 
