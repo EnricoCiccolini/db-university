@@ -96,7 +96,6 @@ FROM
 GROUP BY students.id , courses.name
 ``` -->
 ```
-
   SELECT 
     COUNT(students.registration_number) AS tentativi_per_esame,
     MAX(exam_student.vote) AS max_vote,
@@ -114,4 +113,4 @@ FROM
 GROUP BY students.id , courses.name
 HAVING
     MAX(exam_student.vote) >= 18
-    ```
+```
